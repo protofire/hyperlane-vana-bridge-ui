@@ -7,25 +7,16 @@ import { links } from '../../consts/links';
 import { Color } from '../../styles/Color';
 import { useStore } from '../store';
 
-import { ProtocolType } from '@hyperlane-xyz/utils';
 import { HistoryIcon } from '../../components/icons/History';
-import { useAccounts, useConnectFns } from './hooks/multiProtocol';
+import { useAccounts } from './hooks/multiProtocol';
 
 export function WalletFloatingButtons() {
   const { readyAccounts } = useAccounts();
-  const { /* setShowEnvSelectModal, */ setIsSideBarOpen, isSideBarOpen } = useStore((s) => ({
-    //setShowEnvSelectModal: s.setShowEnvSelectModal,
+  const { setShowEnvSelectModal, setIsSideBarOpen, isSideBarOpen } = useStore((s) => ({
+    setShowEnvSelectModal: s.setShowEnvSelectModal,
     setIsSideBarOpen: s.setIsSideBarOpen,
     isSideBarOpen: s.isSideBarOpen,
   }));
-
-  const connectFns = useConnectFns();
-
-  const onClickEnv = (env: ProtocolType) => () => {
-    close();
-    const connectFn = connectFns[env];
-    if (connectFn) connectFn();
-  };
 
   const numReady = readyAccounts.length;
 
@@ -35,7 +26,7 @@ export function WalletFloatingButtons() {
         <IconButton
           classes={`p-1 ${styles.roundedCircle} `}
           title="Connect Wallet"
-          onClick={onClickEnv(ProtocolType.Ethereum)}
+          onClick={() => setShowEnvSelectModal(true)}
         >
           <WalletIcon color={Color.primary} height={16} width={16} />
         </IconButton>

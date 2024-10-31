@@ -10,6 +10,7 @@ import ArrowRightIcon from '../../images/icons/arrow-right.svg';
 import CollapseIcon from '../../images/icons/collapse-icon.svg';
 import Logout from '../../images/icons/logout.svg';
 import ResetIcon from '../../images/icons/reset-icon.svg';
+import Wallet from '../../images/icons/wallet.svg';
 import { tryClipboardSet } from '../../utils/clipboard';
 import { STATUSES_WITH_ICON, getIconByTransferStatus } from '../../utils/transfer';
 import { getChainDisplayName } from '../chains/utils';
@@ -21,11 +22,11 @@ import { useAccounts, useDisconnectFns, useWalletDetails } from './hooks/multiPr
 import { AccountInfo } from './hooks/types';
 
 export function SideBarMenu({
-  //onConnectWallet,
+  onConnectWallet,
   isOpen,
   onClose,
 }: {
-  //onConnectWallet: () => void;
+  onConnectWallet: () => void;
   isOpen: boolean;
   onClose: () => void;
 }) {
@@ -89,10 +90,10 @@ export function SideBarMenu({
             {readyAccounts.map((acc, i) => (
               <AccountSummary key={i} account={acc} />
             ))}
-            {/* <button onClick={onConnectWallet} className={`${styles.btn} pl-2.5`}>
+            <button onClick={onConnectWallet} className={`${styles.btn} pl-2.5`}>
               <Icon src={Wallet} alt="" size={18} />
               <div className="ml-2">Connect wallet</div>
-            </button> */}
+            </button>
             <button onClick={onClickDisconnect} className={`${styles.btn} pl-2.5`}>
               <Icon src={Logout} alt="" size={20} />
               <div className="ml-2">Disconnect all wallets</div>

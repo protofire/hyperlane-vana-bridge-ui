@@ -33,7 +33,7 @@ export const config: Config = Object.freeze({
   explorerApiKeys,
   isDevMode,
   registryUrl,
-  showDisabledTokens: false,
+  showDisabledTokens: true,
   showTipBox: true,
   version,
   transferBlacklist,
